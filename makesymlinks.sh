@@ -13,6 +13,11 @@ vimDir=~/.vim/colors		# vim directory
 
 ##########
 
+# Get dircolors for Bash console
+echo -n "Getting and applying dircolors"
+curl https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.256dark > ~/.dircolors
+echo "done"
+
 # Add vim colors
 echo -n "Creating $vimDir and getting gruvbox"
 mkdir -p $vimDir
