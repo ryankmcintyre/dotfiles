@@ -8,19 +8,28 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files=".vimrc .gitconfig .tmux.conf"    # list of files/folders to symlink in homedir
+files=".bashrc .vimrc .gitconfig .tmux.conf"    # list of files/folders to symlink in homedir
 vimDir=~/.vim/colors		# vim directory
 
 ##########
 
+# Git prompt
+echo -n "Getting git-prompt.sh"
+echo -n ""
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git-prompt.sh
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > ~/.git-completion.bash
+echo "done"
+
 # Get dircolors for Bash console
 echo -n "Getting and applying dircolors"
+echo -n ""
 curl https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.256dark > ~/.dircolors
 echo "done"
 
 # Add vim colors
 echo -n "Creating $vimDir and getting gruvbox"
 mkdir -p $vimDir
+echo -n ""
 curl https://raw.githubusercontent.com/morhetz/gruvbox/master/colors/gruvbox.vim > $vimDir/gruvbox.vim
 echo "done"
 
