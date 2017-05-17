@@ -128,6 +128,8 @@ if ! shopt -oq posix; then
 fi
 
 export PATH=$PATH:/home/rmcintyre/bin
+export PATH=$PATH:"/mnt/c/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE"
+alias vs2017=devenv.exe
 export DOCKER_HOST=tcp://0.0.0.0:2375
 #export PATH=$PATH:~/bin
 
