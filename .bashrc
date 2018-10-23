@@ -70,9 +70,10 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+#PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 export GIT_PS1_SHOWDIRTYSTATE=true
-PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 2)\]\h \[$(tput setaf 3)\]\w $ \[$(tput sgr0)\]"
+#PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 2)\]\h \[$(tput setaf 3)\]\w $(__git_ps1 ' (%s)') $ \[$(tput sgr0)\]"
+PS1='\[$(tput bold)\[$(tput setaf 2)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 2)\]\h \[$(tput setaf 3)\]\w\[\033[0;32m\]$(__git_ps1)\n└─ ▶\[\033[0m\] '
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -128,9 +129,12 @@ if ! shopt -oq posix; then
 fi
 
 #export PATH=$PATH:/home/rmcintyre/bin
-export PATH=$PATH:"/mnt/c/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE"
-alias vs2017=devenv.exe
-export DOCKER_HOST=tcp://0.0.0.0:2375
-export PATH=$PATH:~/bin
+#export PATH=$PATH:"/mnt/c/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE"
+#alias vs2017=devenv.exe
+#export DOCKER_HOST=tcp://0.0.0.0:2375
+#export PATH=$PATH:~/bin
 
-source '/home/rmcintyre/lib/azure-cli/az.completion'
+#export PS1='[\u@\h \W$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)")]\$ '
+#export PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \w\[\033[0;32m\]$(if git rev-parse --git-dir > /dev/null 2>&1; then echo " - ["; fi)$(git branch 2>/dev/null | grep "^*" | colrm 1 2)\[\033[0;32m\]$(if git rev-parse --git-dir > /dev/null 2>&1; then echo "]"; fi)\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\]\[\033[0m\] '
+
+#source '/home/rmcintyre/lib/azure-cli/az.completion'
