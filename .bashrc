@@ -129,9 +129,14 @@ if grep -q Microsoft /proc/version; then
     # Variables set to enable running code using VCXsrv
     export DISPLAY=0:0
     LIBGL_ALWAYS_INDIRECT=1
+
+    alias copyrsapub='cat ~/.ssh/id_rsa.pub | clip.exe'
+    alias copyrsa='cat ~/.ssh/id_rsa | clip.exe'
+    alias copygithubtoken='cat ~/dev/GitHubAccessToken.txt | clip.exe'
+else
+    alias copyrsapub='cat ~/.ssh/id_rsa.pub | xclip -selection clipboard'
+    alias copyrsa='cat ~/.ssh/id_rsa | xclip -selection clipboard'
+    alias copygithubtoken='cat ~/dev/githubtoken | xclip -selection clipboard'
 fi
 
-alias copyrsapub='cat ~/.ssh/id_rsa.pub | clip.exe'
-alias copyrsa='cat ~/.ssh/id_rsa | clip.exe'
-alias copygithubtoken='cat ~/dev/GitHubAccessToken.txt | clip.exe'
 alias bashit='. ~/.bashrc'
