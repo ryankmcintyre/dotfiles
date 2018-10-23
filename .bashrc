@@ -108,15 +108,6 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -128,13 +119,19 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#export PATH=$PATH:/home/rmcintyre/bin
-#export PATH=$PATH:"/mnt/c/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE"
-#alias vs2017=devenv.exe
-#export DOCKER_HOST=tcp://0.0.0.0:2375
-#export PATH=$PATH:~/bin
+if grep -q Microsoft /proc/version; then
+    #export PATH=$PATH:/home/rmcintyre/bin
+    export PATH=$PATH:"/mnt/c/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE"
+    alias vs2017=devenv.exe
+    export DOCKER_HOST=tcp://0.0.0.0:2375
+    export PATH=$PATH:~/bin
 
-#export PS1='[\u@\h \W$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)")]\$ '
-#export PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \w\[\033[0;32m\]$(if git rev-parse --git-dir > /dev/null 2>&1; then echo " - ["; fi)$(git branch 2>/dev/null | grep "^*" | colrm 1 2)\[\033[0;32m\]$(if git rev-parse --git-dir > /dev/null 2>&1; then echo "]"; fi)\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\]\[\033[0m\] '
+    # Variables set to enable running code using VCXsrv
+    export DISPLAY=0:0
+    LIBGL_ALWAYS_INDIRECT=1
+fi
 
-#source '/home/rmcintyre/lib/azure-cli/az.completion'
+alias copyrsapub='cat ~/.ssh/id_rsa.pub | clip.exe'
+alias copyrsa='cat ~/.ssh/id_rsa | clip.exe'
+alias copygithubtoken='cat ~/dev/GitHubAccessToken.txt | clip.exe'
+alias bashit='. ~/.bashrc'
