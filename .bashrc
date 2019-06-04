@@ -9,7 +9,10 @@ case $- in
 esac
 
 # If tmux isn't already running start it 
-[[ -z "$TMUX" ]] && exec tmux
+# [[ -z "$TMUX" ]] && exec tmux
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
 
 # Add git prompt & completion
 . ~/.git-prompt.sh
@@ -119,7 +122,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if grep -q Microsoft /proc/version; then
+if grep -q Microsoft /proc/version; then # This will match if on WSL1
     #export PATH=$PATH:/home/rmcintyre/bin
     export PATH=$PATH:"/mnt/c/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE"
     alias vs2017=devenv.exe
@@ -133,10 +136,15 @@ if grep -q Microsoft /proc/version; then
     alias copyrsapub='cat ~/.ssh/id_rsa.pub | clip.exe'
     alias copyrsa='cat ~/.ssh/id_rsa | clip.exe'
     alias copygithubtoken='cat ~/dev/GitHubAccessToken.txt | clip.exe'
-else
+elif grep -q microsoft /proc/version; then # This will match if on WSL2
+    alias copyrsapub='cat ~/.ssh/id_rsa.pub | clip.exe'
+    alias copyrsa='cat ~/.ssh/id_rsa | clip.exe'
+    alias copygithubtoken='cat ~/dev/GitHubAccessToken.txt | clip.exe'
+else # This will run when on straight Linux and use the (assumed) x server
     alias copyrsapub='cat ~/.ssh/id_rsa.pub | xclip -selection clipboard'
     alias copyrsa='cat ~/.ssh/id_rsa | xclip -selection clipboard'
-    alias copygithubtoken='cat ~/dev/githubtoken | xclip -selection clipboard'
+    alias copygithubtoken='cat ~/dev/GitHubAccessToken.txt | xclip -selection clipboard'
 fi
 
 alias bashit='. ~/.bashrc'
+source <(kubectl completion bash)
