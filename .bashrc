@@ -122,6 +122,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Some environmment specific things, WSL1 vs WSL2 vs native Linux
 if grep -q Microsoft /proc/version; then # This will match if on WSL1
     #export PATH=$PATH:/home/rmcintyre/bin
     export PATH=$PATH:"/mnt/c/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE"
@@ -140,6 +141,7 @@ elif grep -q microsoft /proc/version; then # This will match if on WSL2
     alias copyrsapub='cat ~/.ssh/id_rsa.pub | clip.exe'
     alias copyrsa='cat ~/.ssh/id_rsa | clip.exe'
     alias copygithubtoken='cat ~/dev/GitHubAccessToken.txt | clip.exe'
+    wsl.exe -u root /etc/init.d/docker start
 else # This will run when on straight Linux and use the (assumed) x server
     alias copyrsapub='cat ~/.ssh/id_rsa.pub | xclip -selection clipboard'
     alias copyrsa='cat ~/.ssh/id_rsa | xclip -selection clipboard'
