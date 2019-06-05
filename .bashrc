@@ -8,9 +8,12 @@ case $- in
       *) return;;
 esac
 
-# If tmux isn't already running start it 
+# If tmux isn't already running start it. If we can attach to existing session, do it. Use
+# a different session for VSCode remote by checking TERM_PROGRAM 
 # [[ -z "$TMUX" ]] && exec tmux
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ "$TERM_PROGRAM" == "vscode" ]; then
+    tmux attach -t vscode || tmux new -s vscode
+elif command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
