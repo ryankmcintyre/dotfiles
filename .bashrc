@@ -144,9 +144,12 @@ elif grep -q microsoft /proc/version; then # This will match if on WSL2
     alias copyrsapub='cat ~/.ssh/id_rsa.pub | clip.exe'
     alias copyrsa='cat ~/.ssh/id_rsa | clip.exe'
     alias copygithubtoken='cat ~/dev/GitHubAccessToken.txt | clip.exe'
-    if (( $(ps -ef | grep -v grep | grep docker | wc -l) == 0 )); then
-        wsl.exe -u root /etc/init.d/docker start
-    fi
+    alias copysimulationtoken='cat ~/code-with/simulation/simulation-ado-token | clip.exe'
+    # Execute cron job to capture unused RAM https://github.com/microsoft/WSL/issues/4166#issuecomment-604707989
+    sudo /etc/init.d/cron start
+#    if (( $(ps -ef | grep -v grep | grep docker | wc -l) == 0 )); then
+#        wsl.exe -u root /etc/init.d/docker start
+#    fi
 else # This will run when on straight Linux and use the (assumed) x server
     alias copyrsapub='cat ~/.ssh/id_rsa.pub | xclip -selection clipboard'
     alias copyrsa='cat ~/.ssh/id_rsa | xclip -selection clipboard'
