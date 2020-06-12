@@ -11,11 +11,11 @@ esac
 # If tmux isn't already running start it. If we can attach to existing session, do it. Use
 # a different session for VSCode remote by checking TERM_PROGRAM 
 # [[ -z "$TMUX" ]] && exec tmux
-if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ "$TERM_PROGRAM" == "vscode" ]; then
-    tmux attach -t vscode || tmux new -s vscode
-elif command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
-fi
+#if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ "$TERM_PROGRAM" == "vscode" ]; then
+#    tmux attach -t vscode || tmux new -s vscode
+#elif command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#    tmux attach -t default || tmux new -s default
+#fi
 
 # Add git prompt & completion
 . ~/.git-prompt.sh
@@ -141,6 +141,8 @@ if grep -q Microsoft /proc/version; then # This will match if on WSL1
     alias copyrsa='cat ~/.ssh/id_rsa | clip.exe'
     alias copygithubtoken='cat ~/dev/GitHubAccessToken.txt | clip.exe'
 elif grep -q microsoft /proc/version; then # This will match if on WSL2
+    export PATH=$PATH:"/mnt/c/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE"
+    alias vs2019=devenv.exe
     alias copyrsapub='cat ~/.ssh/id_rsa.pub | clip.exe'
     alias copyrsa='cat ~/.ssh/id_rsa | clip.exe'
     alias copygithubtoken='cat ~/dev/GitHubAccessToken.txt | clip.exe'
