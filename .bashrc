@@ -19,7 +19,8 @@ esac
 
 # Add git prompt & completion
 . ~/.git-prompt.sh
-. ~/.git-completion.bash
+# . ~/.git-completion.bash # If downloaded separately
+. /usr/share/bash-completion/completions/git # If using built-in git completions
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
