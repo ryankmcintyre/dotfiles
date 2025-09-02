@@ -159,5 +159,8 @@ else # This will run when on straight Linux and use the (assumed) x server
     alias copygithubtoken='cat ~/dev/GitHubAccessToken.txt | xclip -selection clipboard'
 fi
 
+export PATH=$PATH:/home/ryan/.local/bin
+eval "$(oh-my-posh init bash)"
+
 alias bashit='. ~/.bashrc'
 source <(kubectl completion bash)
